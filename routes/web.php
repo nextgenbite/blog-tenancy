@@ -21,7 +21,7 @@ Route::get('/artisan/{command}', function ($command) {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 Route::get('/tenant', [TenancyController::class, 'index'])->name('tenant.index');
 Route::get('/tenant-register', [TenancyController::class, 'register']);

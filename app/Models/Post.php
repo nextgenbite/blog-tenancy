@@ -9,4 +9,15 @@ use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 class Post extends Model
 {
     use HasFactory, BelongsToTenant;
+     protected $guarded = [];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }

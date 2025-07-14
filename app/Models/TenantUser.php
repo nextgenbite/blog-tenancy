@@ -2,10 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 
-class TenantUser extends Model
+
+class TenantUser extends Authenticatable
 {
-    use HasFactory;
+
+    use Notifiable, BelongsToTenant;
+
+    protected $table = 'tenant_users';
+
+    protected $fillable = [
+        'name', 'email', 'password', 'tenant_id', 'role',
+    ];
+
+    protected $hidden = ['password', 'remember_token'];
 }

@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Tanent\ProfileController;
+use App\Http\Controllers\Tenant\ProfileController;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -28,14 +29,17 @@ Route::middleware([
     Route::get('/', function () {
 
         // dd(User::get()->toArray());
-        return view('welcome');
+        $posts = Post::get();
+        return view('tenant.index',compact('posts') );
     });
 
-    Route::get('/dashboard', function () {
-        return view('app.dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware('auth.tenant')->group(function () {
+        Route::get('/dashboard', function () {
+            return view('tenant.dashboard');
+        })->name('tenant.dashboard');
+
+
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

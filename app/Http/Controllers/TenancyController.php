@@ -12,7 +12,7 @@ class TenancyController extends Controller
     public function index()
     {
         $data = Tenant::all();
-        return view('tenant.index', compact('data'));
+        return view('admin.tenant.index', compact('data'));
     }
     public function register()
     {
