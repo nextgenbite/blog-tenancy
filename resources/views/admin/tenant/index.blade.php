@@ -47,7 +47,7 @@
                                     {{$item->email}}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="{{ 'http://' . $item->domain . (config('tenancy.central_domains.1') === 'localhost' ? ':8000' : '') }}">
+                                    <a target="_blank" href="{{ 'http://' . $item->domain . (config('tenancy.central_domains.1') === 'localhost' ? ':8000' : '') }}">
                                         <x-primary-button>
                                             {{ __('Visit') }}
                                         </x-primary-button>
