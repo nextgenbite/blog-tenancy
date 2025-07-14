@@ -34,7 +34,7 @@ Route::middleware([
     });
 
 
-    Route::middleware('auth.tenant')->group(function () {
+    Route::middleware('web','tenant.guard','auth.tenant')->group(function () {
         Route::get('/dashboard', function () {
             return view('tenant.dashboard');
         })->name('tenant.dashboard');

@@ -19,7 +19,7 @@ class ProfileController extends Controller
     {
 
         return view('tenant.profile.edit', [
-            'user' => $request->user('tenant'),
+            'user' => $request->user(),
         ]);
     }
 
