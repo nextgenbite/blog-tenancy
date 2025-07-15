@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Tenant\CategoryController;
+use App\Http\Controllers\Tenant\PostController;
 use App\Http\Controllers\Tenant\ProfileController;
 use App\Models\Category;
 use App\Models\Post;
@@ -56,7 +57,8 @@ Route::middleware([
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('tenant.profile.destroy');
 
         Route::prefix('admin')->middleware('tenant.guard','auth.tenant')->group(function()  {
-           Route::resource('/category', CategoryController::class); 
+           Route::resource('/category', CategoryController::class);
+           Route::resource('/post', PostController::class);
         });
     });
 
