@@ -36,7 +36,16 @@ Route::middleware([
 
     Route::middleware('web','tenant.guard','auth.tenant')->group(function () {
         Route::get('/dashboard', function () {
-            return view('tenant.dashboard');
+// dd([
+//     'tenant' => tenant()->toArray(),
+//     'tenant_id' => tenant()?->id,
+//     'data' => tenant()?->data,
+//     'plan_id' => tenant()?->data['plan_id'] ?? null,
+//     'plan' => tenant()?->plan,
+// ]);
+            $tenant = tenant(); // gets the current Tenant model
+    $plan = $tenant->plan;
+            return view('tenant.dashboard', compact('plan'));
         })->name('tenant.dashboard');
 
 

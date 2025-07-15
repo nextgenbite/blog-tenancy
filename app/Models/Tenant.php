@@ -24,6 +24,7 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 
     public function getPlanAttribute()
 {
-    return \App\Models\Plan::find($this->data['plan_id'] ?? null);
+    return Plan::find($this->plan_id ?? null);
 }
+
 }

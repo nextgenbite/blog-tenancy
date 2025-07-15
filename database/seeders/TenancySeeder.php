@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Tenant,TenantUser,Category,Post};
+use App\Models\{Tenant,TenantUser,Category, Plan, Post};
 use Illuminate\Database\Seeder;
 use Stancl\Tenancy\Facades\Tenancy;
 
@@ -14,7 +14,7 @@ class TenancySeeder extends Seeder
     public function run(): void
     {
         // Get central domain from APP_URL
-        $centralDomain = parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST);
+        $centralDomain = config('tenancy.central_domains')[1];
 
         // Create first tenant
         $tenant1 = Tenant::create([
@@ -22,6 +22,7 @@ class TenancySeeder extends Seeder
             'company_name' => 'Tenant One Inc.',
             'domain' => "tenant1.{$centralDomain}",
             'name' => 'Tenant One Admin',
+            'plan_id' => Plan::inRandomOrder()->first()->id,
             'email' => "admin@tenant1.{$centralDomain}",
             'password' => bcrypt('password'),
         ]);
@@ -33,6 +34,7 @@ class TenancySeeder extends Seeder
             'company_name' => 'Tenant Two LLC',
             'domain' => "tenant2.{$centralDomain}",
             'name' => 'Tenant Two Admin',
+            'plan_id' => Plan::inRandomOrder()->first()->id,
             'email' => "admin@tenant2.{$centralDomain}",
             'password' => bcrypt('password'),
         ]);

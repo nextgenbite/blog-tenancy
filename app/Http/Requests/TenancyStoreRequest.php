@@ -29,6 +29,7 @@ class TenancyStoreRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'plan_id' => ['nullable', 'string',],
 
         ];
     }
@@ -36,7 +37,8 @@ class TenancyStoreRequest extends FormRequest
     {
         $this->merge([
             'id' => $this->domain,
-            'domain' => $this->domain. '.' . config('tenancy.central_domains')[1]
+            'domain' => $this->domain. '.' . config('tenancy.central_domains')[1],
+            'plan_id' => 1,
         ]);
     }
 }

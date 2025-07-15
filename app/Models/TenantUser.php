@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class TenantUser extends Authenticatable
 {
 
-    use Notifiable, BelongsToTenant;
+    use Notifiable,HasFactory, BelongsToTenant;
 
     protected $table = 'tenant_users';
 

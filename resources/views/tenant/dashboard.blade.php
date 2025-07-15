@@ -11,6 +11,16 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div>
+                        <h1>Welcome {{ auth()->user()->name }}</h1>
+                        <p>Your Plan: {{ $plan->name }} - ${{ $plan->price }}</p>
+                        @if ($plan->max_posts)
+                          <p >Max Posts: {{ $plan->max_posts }}</p>
+                        @endif
+                        <p>Custom Domain: {{ $plan->custom_domain ? 'Yes' : 'No' }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
